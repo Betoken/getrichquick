@@ -1,0 +1,30 @@
+/*******************************
+         Site Overrides
+*******************************/
+.ui.button{
+  font-size: 14px;
+  min-height: 48px;
+}
+.ui.button img{
+  float: left;
+  margin-right: 8px;
+}
+.ui.button.continue.ledger{
+  background-color: white;
+  border: 1px solid #ededed;
+}
+.ui.button.kro_btn.positive{
+  background-color: @green!important;
+  border: 1px solid @green!important;
+  color: white!important;
+}
+.ui.button.kro_btn.positive:hover{
+  background-color: @green!important;
+  border: 1px solid @green!important;
+  color: white!important;
+}
+.ui.button.kro_btn.positive:focus{
+  background-color: @green!important;
+  border: 1px solid @green!important;
+  color: white!important;
+}
