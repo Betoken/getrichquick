@@ -1,10 +1,10 @@
 {
-    "texts": ["token_name", "token_symbol", "token_address", "token_price", "referral_bonus", "hard_cap", "ico_description"],
+    "texts": ["token_name", "token_symbol", "token_address", "ico_address", "token_price", "referral_bonus", "hard_cap", "ico_description"],
     "imgs": ["logo"],
     "token_name": "LamboCoin",
     "token_symbol": "LBC",
-    "token_address": "0xdead",
-    "ico_address": "0xbadadd",
+    "token_address": "0x13c03e7a1C944Fa87ffCd657182616420C6ea1F9",
+    "ico_address": "0xF6CA4bdE4f6dF4d733090476e5052F26da37D8fF",
     "token_price": 1.23,
     "referral_bonus": 10,
     "hard_cap": 1e9,

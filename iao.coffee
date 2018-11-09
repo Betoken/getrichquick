@@ -8,8 +8,7 @@ iaoABI = require "./iao_abi.json"
 erc20ABI = require "./erc20_abi.json"
 
 # smart contract addresses
-ICO_CONTENT = require "./content.json"
-IAO_ADDRESS = ICO_CONTENT.ico_address
+IAO_ADDRESS = "0x0"
 
 InsaneGas = 1e18
 
@@ -19,7 +18,8 @@ InsaneGas = 1e18
 
 # loads web3 as a global variable
 # returns success
-loadWeb3 = (useLedger) ->
+loadWeb3 = (useLedger, icoAddress) ->
+    IAO_ADDRESS = icoAddress
     if useLedger
         # Use ledger-wallet-provider to load web3
         try
@@ -292,8 +292,6 @@ registerWithToken = (symbol, amountInDAI, referrer, txCallback, errCallback, con
 
 
 # export functions to window
-window.ICO_CONTENT = ICO_CONTENT
-window.IAO_ADDRESS = IAO_ADDRESS
 window.loadWeb3 = loadWeb3
 window.getTokenList = getTokenList
 window.getAccountPriceInTokens = getAccountPriceInTokens
