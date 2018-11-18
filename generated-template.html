@@ -1,0 +1,382 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+    <title>ICO Title - Build With Betoken</title>
+    <style media="screen">
+      .spinner {
+        width: 40px;
+        height: 40px;
+
+        position: relative;
+        margin: 24px auto;
+      }
+
+      .double-bounce1, .double-bounce2 {
+        width: 100%;
+        height: 100%;
+        border-radius: 50%;
+        background-color: #d4edda;
+        opacity: 0.6;
+        position: absolute;
+        top: 0;
+        left: 0;
+
+        -webkit-animation: sk-bounce 2.0s infinite ease-in-out;
+        animation: sk-bounce 2.0s infinite ease-in-out;
+      }
+
+      .double-bounce2 {
+        -webkit-animation-delay: -1.0s;
+        animation-delay: -1.0s;
+      }
+
+      @-webkit-keyframes sk-bounce {
+        0%, 100% { -webkit-transform: scale(0.0) }
+        50% { -webkit-transform: scale(1.0) }
+      }
+
+      @keyframes sk-bounce {
+        0%, 100% {
+          transform: scale(0.0);
+          -webkit-transform: scale(0.0);
+        } 50% {
+          transform: scale(1.0);
+          -webkit-transform: scale(1.0);
+        }
+      }
+    </style>
+  </head>
+  <body class="bg-light">
+    <div class="p-3 mb-2 bg-danger text-white text-center">You are on the wrong network. Please switch to Main Ethereum Network</div>
+    <div class="container">
+      <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#">
+          <img src="https://via.placeholder.com/30x30?text=Logo+ICO" width="30" height="30" class="d-inline-block align-top" alt="">
+          Project Title
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="#">Learn more</a><!-- IDEA: Project website -->
+            </li>
+          </ul>
+          <button class="btn btn-outline-primary my-2 my-sm-0" type="button">Telegram</button><!-- IDEA: Project Telegram -->
+        </div>
+      </nav>
+    </div>
+    <div class="container">
+      <div class="py-5 text-center">
+        <h2>Our Awesome ICO</h2>
+        <p class="lead">ICO short description on one line</p>
+      </div>
+
+      <div class="row">
+        <div class="col-md-4 order-1 mb-4" id="flow_start">
+          <h4 class="d-flex justify-content-between align-items-center mb-3">
+            Total to pay
+          </h4>
+          <ul class="list-group mb-2">
+            <li class="list-group-item d-flex justify-content-between bg-light">
+              <div class="text-success">
+                <h6 class="my-0">Referral bonus</h6>
+                <small>You will receive <span class="referral_bonus"></span>% bonus Kairo because you have been referred by a good friend. Your friend will get the same bonus.</small>
+              </div>
+            </li>
+            <li class="list-group-item d-flex justify-content-between lh-condensed">
+              <div>
+                <h6 class="my-0">Total</h6>
+                <small class="text-muted">ETH</small>
+              </div>
+              <span class="text-muted">0.00002</span>
+            </li>
+          </ul>
+          <button type="submit" class="btn btn-dark btn-lg btn-block" id="metamask_btn"><img class="align-text-top" src="assets/images/metamask.png" width="24" alt="Ledger logo">  Continue with Metamask</button>
+          <button type="submit" class="btn btn-outline-secondary btn-lg btn-block mb-4" id="ledger_btn"><img class="align-text-top" src="assets/images/ledger.png" width="24" alt="Ledger logo">  Continue with Ledger</button>
+          <form>
+            <div class="form-group">
+              <label for="receipientAddress">Or send directly <b id="eth_price">loading...</b> <b>ETH</b> to:</label>
+              <input class="form-control" type="text" id="receipientAddress" placeholder="0x.." value="0x..">
+            </div>
+            <div class="form-group">
+              <label>Scan the QRcode with your Mobile Wallet</label>
+              <img id="qrcode" class="mx-auto d-block mb-3 mt-3" src="https://via.placeholder.com/128x128?text=Logo+ICO" width="128" alt="qrcode">
+            </div>
+          </form>
+        </div>
+
+        <div class="col-md-4 order-1 mb-4 d-none" id="flow_metamask_confirm">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Metamask</h5>
+              <h6 class="card-subtitle mb-2 text-muted">Awaiting confirmation from your wallet</h6>
+              <img class="mx-auto d-block mb-3 mt-3" src="assets/images/metamask-big.png" width="128" alt="metamask-logo">
+              <p class="card-text">Confirm the transaction(s) in Metamask to continue your purchase. There will be <b class="tx_count"></b> <b>transaction(s)</b> you need to confirm. It's fine to stick with these defaults gas limit and price.</p>
+              <div class="alert alert-info" role="alert">
+                <strong>Note:</strong> If you don't see the correct number of transactions, try opening the Metamask interface manually. Sometimes Metamask hides transactions!
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <form>
+                <div class="form-group">
+                  <label for="receipientAddress">Please verify the receipient address is the following:</label>
+                  <input class="form-control" type="text" id="receipientAddress" placeholder="0x.." value="0x..">
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-4 order-1 mb-4 d-none" id="flow_ledger_confirm">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Ledger</h5>
+              <h6 class="card-subtitle mb-2 text-muted">Awaiting confirmation from your wallet</h6>
+              <img class="mx-auto d-block mb-3 mt-3" src="assets/images/ledger-big.png" width="64" alt="ledger-logo">
+              <p class="card-text">Confirm the transaction(s) in your Ledger to continue your purchase. There will be <b class="tx_count"></b> <b>transaction(s)</b> you need to confirm. It's fine to stick with these defaults gas limit and price.</p>
+              <div class="alert alert-primary" role="alert">
+                <h6>Important</h6>
+                <ul>
+                  <li>You are using Chrome or Brave on a desktop computer.</li>
+                  <li>Your Ledger is properly plugged in.</li>
+                  <li>You have logged into your Ledger.</li>
+                  <li>You have launched the Ethereum App on your Ledger.</li>
+                  <li>"Browser Support" and "Contract Support" have been enabled in the Ethereum App's settings.</li>
+                </ul>
+              </div>
+              <form>
+                <div class="form-group">
+                  <label for="receipientAddress">Please verify the receipient address is the following:</label>
+                  <input class="form-control" type="text" id="receipientAddress" placeholder="0x.." value="0x..">
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-4 order-1 mb-4 d-none" id="flow_submitted">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">🎉</h5>
+              <h6 class="card-subtitle mb-2 text-muted">Transaction successfully submitted!</h6>
+              <div class="spinner">
+                <div class="double-bounce1"></div>
+                <div class="double-bounce2"></div>
+              </div>
+              <p class="card-text">Your transaction will be finalized in a few minutes. <a class="tx_link" href="#" title="Check transaction status on Etherscan" target="_blank">Check status</a>.</p>
+              <div class="alert alert-success" role="alert">
+                <h6>Earn bonus tokens</h6>
+                <p>Inviting a friend to the ICO will grant you both <span class="referral_bonus"></span>% bonus tokens. What a win-win!</p>
+                <hr>
+                <p class="mb-0">Tip: Sharing your invite link on Telegram and Twitter is a great place to start</p>
+              </div>
+              <form>
+                <div class="form-group">
+                  <label for="inviteLink">Your invite link:</label>
+                  <input class="form-control" type="text" id="inviteLink" placeholder="https://" value="https://">
+                </div>
+                <a class="btn btn-link btn-sm btn-block" href="https://twitter.com/intent/tweet?hashtags=getrichquick&related=betokenfund&text=I%20just%20joined%20this%20super%20sweet%20ICO!%20Use%20this%20link%20to%20get%20some%20bonus%20tokens%3A%20" target="_blank" class="share_twitter">Share on Twitter</a>
+              </form>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-4 order-1 mb-4 d-none" id="flow_confirmed">
+          <div class="card border-success">
+            <div class="card-body">
+              <h5 class="card-title">✔️</h5>
+              <h6 class="card-subtitle mb-2 text-muted">You just got your tokens!</h6>
+              <form>
+                <div class="form-group">
+                  <label for="tokenAddressContract">Use this token address to add the token to your wallet:</label>
+                  <input class="form-control" type="text" id="tokenAddressContract" placeholder="" value="0x..">
+                </div>
+              </form>
+              <p class="card-text">Check your <a class="tx_link" href="#" title="Check transaction status on Etherscan" target="_blank">transaction</a>.</p>
+              <div class="alert alert-success" role="alert">
+                <h6>Earn bonus tokens</h6>
+                <p>Inviting a friend to the ICO will grant you both <span class="referral_bonus"></span>% bonus tokens. What a win-win!</p>
+                <hr>
+                <p class="mb-0">Tip: Sharing your invite link on Telegram and Twitter is a great place to start</p>
+              </div>
+              <form>
+                <div class="form-group">
+                  <label for="inviteLink">Your invite link:</label>
+                  <input class="form-control" type="text" id="inviteLink" placeholder="https://" value="https://">
+                </div>
+                <a class="btn btn-link btn-sm btn-block" href="https://twitter.com/intent/tweet?hashtags=getrichquick&related=betokenfund&text=I%20just%20joined%20this%20super%20sweet%20ICO!%20Use%20this%20link%20to%20get%20some%20bonus%20tokens%3A%20" target="_blank" class="share_twitter">Share on Twitter</a>
+              </form>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-4 order-1 mb-4 d-none" id="flow_error">
+          <div class="card border-danger">
+            <div class="card-body">
+              <h5 class="card-title">⚠️</h5>
+              <h6 class="card-subtitle mb-4">Oops, there's been an error!</h6>
+              <div class="alert alert-danger" role="alert">
+                <p style="white-space: pre-wrap;" id="error_msg"></p>
+                <hr>
+                <p class="mb-0">Refresh this page to go back to the beginning.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-8 order-0">
+          <form class="needs-validation mb-5" novalidate>
+            <h4 class="mb-3">How much?</h4>
+            <div class="row">
+              <div class="col-md-6 mb-3">
+                <label for="amount">Amount of tokens</label>
+                <input type="text" class="form-control" id="amount" placeholder="0" required>
+                <div class="invalid-feedback">
+                  Amount of tokens required
+                </div>
+              </div>
+              <div class="col-md-6 mb-3">
+                <label for="assets">Payment method</label>
+                <select class="custom-select d-block w-100" id="assets" required>
+                  <option value="">Choose...</option>
+                  <option>ETH</option>
+                  <option>ETH</option>
+                  <option>ETH</option>
+                </select>
+                <div class="invalid-feedback">
+                  Please select a payment method.
+                </div>
+              </div>
+            </div>
+            <div class="alert alert-warning alert-dismissible fade show" role="alert">
+              <strong>Note:</strong> the amount of tokens you get may be slightly different due to the price fluctuations of the token you use as payment method. Pay with DAI if it's an issue for you.
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <hr class="mb-4">
+            <div class="custom-control custom-checkbox">
+              <input type="checkbox" class="custom-control-input" id="conditions">
+              <label class="custom-control-label" for="conditions">By continuing, you agree that you're buying the tokens at your own risk, and that any losses will be solely your own responsibility.</label>
+            </div>
+          </form>
+          <div class="d-none d-lg-block">
+            <h4 class="d-flex justify-content-between align-items-center mb-3">
+              ICO Details
+            </h4>
+            <ul class="list-group mb-5">
+              <li class="list-group-item d-flex justify-content-between lh-condensed">
+                <div>
+                  <h6 class="my-0">Token name</h6>
+                </div>
+                <span class="text-muted">Kairo (KRO)</span>
+              </li>
+              <li class="list-group-item d-flex justify-content-between lh-condensed">
+                <div>
+                  <h6 class="my-0">Token price</h6>
+                  <small class="text-muted">USD-DAI</small>
+                </div>
+                <span class="token_price text-muted">$0.00002</span>
+              </li>
+              <li class="list-group-item d-flex justify-content-between lh-condensed">
+                <div>
+                  <h6 class="my-0">Total supply</h6>
+                  <small class="text-muted">KRO</small>
+                </div>
+                <span class="text-muted">10,000,000,000</span>
+              </li>
+              <li class="list-group-item d-flex justify-content-between lh-condensed">
+                <div>
+                  <h6 class="my-0">Hardcap</h6>
+                  <small class="text-muted">USD</small>
+                </div>
+                <span class="text-muted"><span class="token_symbol"></span><span class="hard_cap">10,000,000</span></span>
+              </li>
+              <li class="list-group-item d-flex justify-content-between lh-condensed">
+                <div>
+                  <h6 class="my-0">ICO end date</h6>
+                </div>
+                <span class="text-muted">03/01/2019</span>
+              </li>
+              <li class="list-group-item d-flex justify-content-between lh-condensed">
+                <div>
+                  <h6 class="my-0">White paper</h6>
+                </div>
+                <span class="text-muted"><a href="#" target="_blank">Read</a></span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="row d-lg-none mt-4">
+        <div class="col-12">
+          <h4 class="d-flex justify-content-between align-items-center mb-3">
+            ICO Details
+          </h4>
+          <ul class="list-group mb-5">
+            <li class="list-group-item d-flex justify-content-between lh-condensed">
+              <div>
+                <h6 class="my-0">Token name</h6>
+              </div>
+              <span class="text-muted">Kairo (KRO)</span>
+            </li>
+            <li class="list-group-item d-flex justify-content-between lh-condensed">
+              <div>
+                <h6 class="my-0">Token price</h6>
+                <small class="text-muted">USD</small>
+              </div>
+              <span class="text-muted">$0.00002</span>
+            </li>
+            <li class="list-group-item d-flex justify-content-between lh-condensed">
+              <div>
+                <h6 class="my-0">Total supply</h6>
+                <small class="text-muted">KRO</small>
+              </div>
+              <span class="text-muted">10,000,000,000</span>
+            </li>
+            <li class="list-group-item d-flex justify-content-between lh-condensed">
+              <div>
+                <h6 class="my-0">Hardcap</h6>
+                <small class="text-muted">USD</small>
+              </div>
+              <span class="text-muted"><span class="token_symbol"></span><span class="hard_cap">10,000,000</span></span>
+            </li>
+            <li class="list-group-item d-flex justify-content-between lh-condensed">
+              <div>
+                <h6 class="my-0">ICO end date</h6>
+              </div>
+              <span class="text-muted">03/01/2019</span>
+            </li>
+            <li class="list-group-item d-flex justify-content-between lh-condensed">
+              <div>
+                <h6 class="my-0">White paper</h6>
+              </div>
+              <span class="text-muted"><a href="#" target="_blank">Read</a></span>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <footer class="my-3 text-muted text-center text-small">
+        <p class="mb-1">Build with <a href="#" class="card-link">Betoken Get Rich Quick</a></p>
+      </footer>
+    </div>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+  </body>
+</html>
