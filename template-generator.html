@@ -1,0 +1,290 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    
+    <title>Get Rich Quick - A fun experiment by Betoken</title>
+    <style media="screen">
+        .spinner {
+            width: 40px;
+            height: 40px;
+            
+            position: relative;
+            margin: 24px auto;
+        }
+        
+        .double-bounce1, .double-bounce2 {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            background-color: #d4edda;
+            opacity: 0.6;
+            position: absolute;
+            top: 0;
+            left: 0;
+            
+            -webkit-animation: sk-bounce 2.0s infinite ease-in-out;
+            animation: sk-bounce 2.0s infinite ease-in-out;
+        }
+        
+        .double-bounce2 {
+            -webkit-animation-delay: -1.0s;
+            animation-delay: -1.0s;
+        }
+        
+        @-webkit-keyframes sk-bounce {
+            0%, 100% { -webkit-transform: scale(0.0) }
+            50% { -webkit-transform: scale(1.0) }
+        }
+        
+        @keyframes sk-bounce {
+            0%, 100% {
+                transform: scale(0.0);
+                -webkit-transform: scale(0.0);
+            } 50% {
+                transform: scale(1.0);
+                -webkit-transform: scale(1.0);
+            }
+        }
+    </style>
+</head>
+<body class="bg-light">
+    <div class="p-3 mb-2 bg-danger text-white text-center">You are on the wrong network. Please switch to Main Ethereum Network</div>
+    <div class="container">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <a class="navbar-brand" href="#">
+                <img src="https://via.placeholder.com/30x30?text=Logo+ICO" width="30" height="30" class="d-inline-block align-top" alt="">
+                Get Rich Quick
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">By Betoken</a><!-- IDEA: Project website -->
+                    </li>
+                </ul>
+                <button class="btn btn-outline-dark bt-sm my-2 my-sm-0" type="button" disabled><span class="text-success font-weight-bold">&bull;</span> Metamask</small> 0x000..000 </button><!-- IDEA: User wallet -->
+            </div>
+        </nav>
+    </div>
+    <div class="container">
+        <div class="py-5 text-center">
+            <h2>When moon?</h2>
+            <p class="lead">Hurry, hype is drying up. Launch your ICO in one click!</p>
+        </div>
+        <div class="row text-center mb-5">
+            <div class="col-md-4">
+                <h4>
+                    Newb ready
+                </h4>
+                <p>No blockchain development. Deploy your s***coin in one click.</p>
+            </div>
+            <div class="col-md-4">
+                <h4>
+                    Lambos on the moon
+                </h4>
+                <p>You will guarantee yourself a fortune.</p>
+            </div>
+            <div class="col-md-4">
+                <h4>
+                    No FUD
+                </h4>
+                <p>It's a real tool to deploy real ICO on the Ethereum blockchain.</p>
+            </div>
+            
+        </div>
+        
+        <div class="row">
+            <div class="col-md-4 order-1 mb-4" id="flow_start">
+                <h4 class="d-flex justify-content-between align-items-center mb-3">
+                    🌑🚀 To the moon!
+                </h4>
+                <div class="card">
+                    <div class="card-body">
+                        <p class="card-text">Deploy your ICO on Ethereum Mainnet.</p>
+                        <button type="submit" class="btn btn-dark btn-lg btn-block"><img class="align-text-top" src="assets/images/metamask.png" width="24" alt="Ledger logo">  Continue with Metamask</button>
+                        <button type="submit" class="btn btn-outline-secondary btn-lg btn-block mb-4"><img class="align-text-top" src="assets/images/ledger.png" width="24" alt="Ledger logo">  Continue with Ledger</button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-4 order-1 mb-4 d-none" id="flow_metamask_confirm">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Metamask</h5>
+                        <h6 class="card-subtitle mb-2 text-muted">Awaiting confirmation from your wallet</h6>
+                        <img class="mx-auto d-block mb-3 mt-3" src="assets/images/metamask-big.png" width="128" alt="metamask-logo">
+                        <p class="card-text">Confirm the transaction(s) in Metamask to continue. There will be <b class="tx_count"></b> <b>transaction(s)</b> you need to confirm. It's fine to stick with these defaults gas limit and price.</p>
+                        <div class="alert alert-info" role="alert">
+                            <strong>Note:</strong> If you don't see the correct number of transactions, try opening the Metamask interface manually. Sometimes Metamask hides transactions!
+                        </div>
+                        <form>
+                            <div class="form-group">
+                                <label for="receipientAddress">Please verify the receipient address is the following:</label>
+                                <input class="form-control" type="text" id="receipientAddress" placeholder="0x.." value="0x..">
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-4 order-1 mb-4 d-none" id="flow_ledger_confirm">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Ledger</h5>
+                        <h6 class="card-subtitle mb-2 text-muted">Awaiting confirmation from your wallet</h6>
+                        <img class="mx-auto d-block mb-3 mt-3" src="assets/images/ledger-big.png" width="64" alt="ledger-logo">
+                        <p class="card-text">Confirm the transaction(s) in your Ledger to continue. There will be <b class="tx_count"></b> <b>transaction(s)</b> you need to confirm. It's fine to stick with these defaults gas limit and price.</p>
+                        <div class="alert alert-primary" role="alert">
+                            <h6>Important</h6>
+                            <ul>
+                                <li>You are using Chrome or Brave on a desktop computer.</li>
+                                <li>Your Ledger is properly plugged in.</li>
+                                <li>You have logged into your Ledger.</li>
+                                <li>You have launched the Ethereum App on your Ledger.</li>
+                                <li>"Browser Support" and "Contract Support" have been enabled in the Ethereum App's settings.</li>
+                            </ul>
+                        </div>
+                        <form>
+                            <div class="form-group">
+                                <label for="receipientAddress">Please verify the receipient address is the following:</label>
+                                <input class="form-control" type="text" id="receipientAddress" placeholder="0x.." value="0x..">
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-4 order-1 mb-4 d-none" id="flow_submitted">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">🎉</h5>
+                        <h6 class="card-subtitle mb-2 text-muted">Transaction successfully submitted!</h6>
+                        <div class="spinner">
+                            <div class="double-bounce1"></div>
+                            <div class="double-bounce2"></div>
+                        </div>
+                        <p class="card-text">Your transaction will be finalized in a few minutes. <a class="tx_link" href="#" title="Check transaction status on Etherscan" target="_blank">Check status</a>.</p>
+                        <a class="btn btn-link btn-sm btn-block" href="#" target="_blank" class="share_twitter">Share on Twitter</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-4 order-1 mb-4 d-none" id="flow_confirmed">
+                <div class="card border-success">
+                    <div class="card-body">
+                        <h5 class="card-title">✔️</h5>
+                        <h6 class="card-subtitle mb-2 text-muted">You just deployed your ICO!</h6>
+                        <form>
+                            <div class="form-group">
+                                <label for="ifpsURL">Check it here:</label>
+                                <input class="form-control" type="text" id="ipfsURL" placeholder="" value="0x..">
+                            </div>
+                        </form>
+                        <p class="card-text">Check your <a class="tx_link" href="#" title="Check transaction status on Etherscan" target="_blank">transaction</a>.</p>
+                        <a class="btn btn-link btn-sm btn-block" href="#" target="_blank" class="share_twitter">Share on Twitter</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-4 order-1 mb-4 d-none" id="flow_error">
+                <div class="card border-danger">
+                    <div class="card-body">
+                        <h5 class="card-title">⚠️</h5>
+                        <h6 class="card-subtitle mb-4">Oops, there's been an error!</h6>
+                        <div class="alert alert-danger" role="alert">
+                            <p style="white-space: pre-wrap;" id="error_msg"></p>
+                            <hr>
+                            <p class="mb-0">Refresh this page to go back to the beginning.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-8 order-0">
+                <form>
+                    <h4 class="mb-3">Details of your ICO</h4>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="projectTitle">Project Title</label>
+                            <input type="email" class="form-control" id="projectTitle" placeholder="Project Title">
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="projectWebsite">Project official website</label>
+                            <input type="password" class="form-control" id="projectWebsite" placeholder="https://">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="projectIcoTitle">ICO Title</label>
+                            <input type="text" class="form-control" id="projectIcoTitle" placeholder="ICO name">
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="projectTelegram">Project Telegram channel</label>
+                            <input type="text" class="form-control" id="projectTelegram" placeholder="https://t.me..">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="icoShortDesc">ICO short description - max 250 charact.</label>
+                        <textarea class="form-control" id="icoShortDesc" rows="3"></textarea>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-4">
+                            <label for="tokenName">Token name and ticker</label>
+                            <input type="text" class="form-control" id="tokenName" placeholder="Ethereum (ETH)">
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label for="tokenSupply">Total Token Supply</label>
+                            <input type="text" class="form-control" id="tokenSupply" placeholder="0">
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label for="tokenPrice">Token price USD-DAI</label>
+                            <input type="text" class="form-control" id="tokenPrice" placeholder="0">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="bonus">Referal Bonus % (people inviting friends to the ICO get bonus tokens)</label>
+                        <input type="text" class="form-control" id="bonus" placeholder="10%">
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="hardcap">Hardcap</label>
+                            <input type="text" class="form-control" id="hardcap" placeholder="0$">
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="icoEndDate">ICO end date</label>
+                            <input type="text" class="form-control" id="icoEndDate" placeholder="mm/dd/yyyy">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="whitePaper">White paper</label>
+                        <input type="text" class="form-control" id="whitePaper" placeholder="https://..">
+                    </div>
+                    <hr class="mb-4">
+                    <div class="custom-control custom-checkbox mb-5">
+                        <input type="checkbox" class="custom-control-input" id="conditions">
+                        <label class="custom-control-label" for="conditions">By continuing, you agree that you're buying the tokens at your own risk, and that any losses will be solely your own responsibility.</label>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <footer class="my-3 text-muted text-center text-small">
+            <p class="mb-1">A fun experiment built by <a href="#" class="card-link">Betoken</a></p>
+        </footer>
+    </div>
+    
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+</body>
+</html>
