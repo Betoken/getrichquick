@@ -63,6 +63,9 @@ body{
   box-shadow: 0px 0px 24px #FE3694;
   border-radius: 24px;
 }
+.btn-metamask, .btn-ledger{
+  font-size: 16px;
+}
 .text-pink{
   color: #FE3694;
 }
