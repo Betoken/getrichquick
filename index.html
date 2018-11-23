@@ -37,20 +37,20 @@
                 <!-- Page Contents -->
                 <div class="widescreen large screen computer only ui equal width centered column grid container">
                     <div class="ui fluid text menu">
-                        <div class="item">
-                            <img class="ui image logo" style="margin-top: 5%;" alt="logo">
+                        <div class="item logo">
+                            <img class="ui image logo" width="192" alt="logo">
                         </div>
                     </div>
                 </div>
                 <div class="mobile tablet only ui equal width centered column grid container">
-                    <img class="ui image logo" width="192" alt="logo">
+                    <img class="ui image logo" height="56" alt="logo">
                 </div>
-                
+
                 <h1><span class="token_name"></span> ICO</h1> <br>
                 <div class="ui grid">
-                    <div class="five wide column"><b>Token price:</b><br> <span class="token_price"></span> USD-DAI</div>
-                    <div class="five wide column"><b>Referral bonus:</b><br> <span class="referral_bonus"></span>%</div>
-                    <div class="five wide column"><b>Hard cap:</b><br> <span class="hard_cap"></span> <span class="token_symbol"></span></div>
+                    <div class="five wide column"><b>Token price</b><br> <span class="token_price"></span> USD-DAI</div>
+                    <div class="five wide column"><b>Referral bonus</b><br> <span class="referral_bonus"></span>%</div>
+                    <div class="five wide column"><b>Hard cap</b><br> <span class="hard_cap"></span> <span class="token_symbol"></span></div>
                 </div>
                 <p></p>
                 <p class="ico_description" style="white-space: pre-wrap;"></p>
@@ -61,7 +61,7 @@
                 <div class="ui segment">
                     <div class="ui fluid form success">
                         <div class="field">
-                            <label>1. Enter how much <span class="token_name"></span> you want:</label>
+                            <label>1. Enter how much <span class="token_name"></span> you want</label>
                             <div class="ui right labeled input">
                                 <input type="text" id="buy_token_amount" placeholder="Token amount...">
                                 <div class="ui label token_symbol"></div>
@@ -74,12 +74,15 @@
                         </div>
 
                         <div class="field">
-                            <label>2. Choose your payment method:</label>
+                            <label>2. Choose your payment method</label>
                             <select id="dropdown"></select>
                         </div>
 
-                        Payment amount: <b id="pay_token_amount">loading...</b>
-                        <p></p>
+                        <div class="field amount-pay">
+                            <p>Amount to pay</p>
+                            <b id="pay_token_amount">loading...</b>
+                        </div>
+
 
                         <div class="inline field">
                             <div class="ui checkbox">
@@ -102,8 +105,8 @@
                             OR
                         </div>
                         <div class="field">
-                            Send <b id="eth_price">loading...</b> <b>ETH</b> to <small><a class="ico_address ico_address_etherscan" target="_blank" ></a></small> <br> <b>with 1,000,000 gas limit</b>
-                            <div class="ui accordion field">
+                            Send <b id="eth_price">loading...</b> <b>ETH</b> to <small><a class="ico_address ico_address_etherscan" target="_blank" ></a></small> <b>with 1,000,000 gas limit.</b>
+                            <div class="ui accordion field qrcode">
                                 <div class="title">
                                     <i class="icon qrcode"></i>
                                     Show QR Code
@@ -217,11 +220,15 @@
             </div>
         </div>
     </div>
+    <div class="ui hidden divider"></div>
+    <div class="ui hidden divider"></div>
+    <div class="ui hidden divider"></div>
     <!-- CTA footer -->
     <div class="ui container">
-        <div class="ui grid">
-            <div class="column">
-                <img class="powered-by" src="semantic/dist/themes/default/assets/images/powered-by-kn.png" width="128" alt="kyber-logo">
+        <div class="ui two column grid centered">
+            <div class="column center aligned">
+                Generate your own token sale<br>
+                <a href="#" target="_blank"><img src="assets/images/logo-get-rich-quick.png" class="powered-by" alt="get rich quick logo" title="Get Rich Quick token sale generator" width="184"></a>
             </div>
         </div>
     </div>
