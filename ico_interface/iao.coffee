@@ -2,6 +2,7 @@
 Web3 = require "web3"
 fetch = require "node-fetch"
 BigNumber = require "bignumber.js"
+IPFS = require "ipfs"
 
 # smart contract ABI's
 iaoABI = require "./iao_abi.json"
@@ -147,6 +148,15 @@ getAccountPriceInTokens = (symbol, amountInDAI) ->
         tokenInfo = await getTokenInfo("DAI")
         ethPerDAI = tokenInfo.currentPrice
         return ethPerDAI * amountInDAI
+
+# fetch JSON stored at IPFS hash
+getContentFromIPFS = (hash, callback) ->
+    ipfs = new IPFS()
+    ipfs.once("ready", () ->
+        ipfs.get(hash, function (err, files) {
+            callback(JSON.parse(files[0].content.toString("utf8")))
+        })
+    )
 
 
 #
@@ -295,6 +305,7 @@ registerWithToken = (symbol, amountInDAI, referrer, txCallback, errCallback, con
 window.loadWeb3 = loadWeb3
 window.getTokenList = getTokenList
 window.getAccountPriceInTokens = getAccountPriceInTokens
+window.getContentFromIPFS = getContentFromIPFS
 window.registerWithDAI = registerWithDAI
 window.registerWithETH = registerWithETH
 window.registerWithToken = registerWithToken

@@ -124,5 +124,3 @@ uploadICOInterface = (token_name, token_symbol, token_address, ico_address,
         results = await ipfs.files.add(Buffer.from(JSON.stringify(content)))
         callback(results[0].hash)
     )
-    
-

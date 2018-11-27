@@ -20,8 +20,9 @@ WRONG_NETWORK_ERR = "Please switch to the Ethereum Main network in order to part
 
 $(document)
 .ready(() => {
-    // load page content from json
-    $.getJSON('./content.json', (CONTENT) => {
+    // load page content from IPFS json
+    const hash = getUrlParameter("ipfs")
+    window.getContentFromIPFS(hash, (CONTENT) => {
         // inject content to page
         for (var i = 0; i < CONTENT.texts.length; i++) {
             $(`.${CONTENT.texts[i]}`).text(CONTENT[CONTENT.texts[i]]);
@@ -105,7 +106,7 @@ $(document)
                 referrer = typeof(referrer) === 'undefined' ? '0x0000000000000000000000000000000000000000' : referrer;
                 var txCallback = (txHash) => {
                     $('.tx_link').attr('href', `https://etherscan.io/tx/${txHash}`);
-                    var invite_link = window.location.href + '?ref=' + window.web3.eth.defaultAccount;
+                    var invite_link = window.location.href + (window.location.href.indexOf('?') >= 0 ? '&' : '?') + 'ref=' + window.web3.eth.defaultAccount;
                     $('.invite_link').val(invite_link);
                     $('.share_twitter').attr('href', $('.share_twitter').attr('href') + encodeURIComponent(invite_link));
     
