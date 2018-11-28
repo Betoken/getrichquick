@@ -149,7 +149,7 @@ $(document)
                 window.loadWeb3(false, CONTENT.ico_address).then((success) => {
                     if (success) {
                         web3.eth.net.getId().then((netID) => {
-                            if (netID === 1) {
+                            if (netID === 3) {
                                 // transition to confirm page
                                 setFlowStep('flow_metamask_confirm');
     
