@@ -18,8 +18,7 @@ InsaneGas = 1e18
 
 # loads web3 as a global variable
 # returns success
-loadWeb3 = (useLedger, icoAddress) ->
-    IAO_ADDRESS = icoAddress
+loadWeb3 = (useLedger) ->
     if useLedger
         # Use ledger-wallet-provider to load web3
         try
@@ -124,3 +123,7 @@ uploadICOInterface = (token_name, token_symbol, token_address, ico_address,
         results = await ipfs.files.add(Buffer.from(JSON.stringify(content)))
         callback(results[0].hash)
     )
+
+window.loadWeb3 = loadWeb3
+window.createICO = createICO
+window.uploadICOInterface = uploadICOInterface

@@ -153,9 +153,9 @@ getAccountPriceInTokens = (symbol, amountInDAI) ->
 getContentFromIPFS = (hash, callback) ->
     ipfs = new IPFS()
     ipfs.once("ready", () ->
-        ipfs.get(hash, function (err, files) {
+        ipfs.get(hash, (err, files) ->
             callback(JSON.parse(files[0].content.toString("utf8")))
-        })
+        )
     )
 
 
