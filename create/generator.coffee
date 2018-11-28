@@ -83,7 +83,7 @@ createICO = (_name, _symbol, _hardCap, _tokensPerDAI, _referralBonus, _beneficia
     factory = FactoryContract()
     if factory?
         await factory.methods.createICO(
-            _name, _symbol, _hardCap, _tokensPerDAI, _referralBonus, _beneficiary)
+            _name, _symbol, BigNumber(_hardCap).integerValue(), BigNumber(_tokensPerDAI).integerValue(), BigNumber(_referralBonus).integerValue(), _beneficiary)
             .estimateGas({
                 from: web3.eth.defaultAccount
                 gas: InsaneGas
@@ -93,7 +93,7 @@ createICO = (_name, _symbol, _hardCap, _tokensPerDAI, _referralBonus, _beneficia
                     return
                 
                 factory.methods.createICO(
-                    _name, _symbol, _hardCap, _tokensPerDAI, _referralBonus, _beneficiary)
+                    _name, _symbol, BigNumber(_hardCap).integerValue(), BigNumber(_tokensPerDAI).integerValue(), BigNumber(_referralBonus).integerValue(), _beneficiary)
                 .send({
                     from: web3.eth.defaultAccount
                     gas: Math.ceil(estimatedGas * 1.5)

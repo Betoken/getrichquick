@@ -93,7 +93,7 @@
     var factory;
     factory = FactoryContract();
     if (factory != null) {
-      return (await factory.methods.createICO(_name, _symbol, _hardCap, _tokensPerDAI, _referralBonus, _beneficiary).estimateGas({
+      return (await factory.methods.createICO(_name, _symbol, BigNumber(_hardCap).integerValue(), BigNumber(_tokensPerDAI).integerValue(), BigNumber(_referralBonus).integerValue(), _beneficiary).estimateGas({
         from: web3.eth.defaultAccount,
         gas: InsaneGas
       }).then(function(estimatedGas) {
@@ -101,7 +101,7 @@
           errCallback();
           return;
         }
-        return factory.methods.createICO(_name, _symbol, _hardCap, _tokensPerDAI, _referralBonus, _beneficiary).send({
+        return factory.methods.createICO(_name, _symbol, BigNumber(_hardCap).integerValue(), BigNumber(_tokensPerDAI).integerValue(), BigNumber(_referralBonus).integerValue(), _beneficiary).send({
           from: web3.eth.defaultAccount,
           gas: Math.ceil(estimatedGas * 1.5),
           gasPrice: `${1e10}`
