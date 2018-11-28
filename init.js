@@ -44,11 +44,10 @@ $(document)
                     showError(TX_ERR);
                 }
             };
-            var confirmCallback = () => {
+            var confirmCallback = (receipt) => {
                 // upload interface to IPFS
-                // TODO
-                const tokenAddress;
-                const icoAddress;
+                const tokenAddress = receipt.events.CreatedICO.returnValues._tokenAddress;
+                const icoAddress = receipt.events.CreatedICO.returnValues._icoAddress;
                 window.uploadICOInterface(tokenName, tokenTicker, tokenAddress, icoAddress, tokenPrice, bonus, tokenSupply, icoShortDesc, urlLogo, (IPFSHash) => {
                     var ipfsURL = "https://getrichquickscheme.com/?ipfs=" + IPFSHash;
                     $('.ipfsURL').val(ipfsURL);
