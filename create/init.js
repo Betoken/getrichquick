@@ -62,7 +62,7 @@ $(document)
                 });
             };
 
-            return window.createICO(tokenName, tokenTicker, tokenSupply, tokenPrice, bonus, beneficiary, txCallback, errCallback, confirmCallback);
+            return window.createICO(tokenName, tokenTicker, tokenSupply * PRECISION, tokenPrice * PRECISION, bonus / 100 * PRECISION, beneficiary, txCallback, errCallback, confirmCallback);
         }
 
         // load web3
