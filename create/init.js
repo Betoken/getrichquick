@@ -31,7 +31,7 @@ $(document)
         const tokenSupply = +$('#tokenSupply')[0].value;
         const tokenPrice = +$('#tokenPrice')[0].value;
         const bonus = +$('#bonus')[0].value;
-        const beneficiary = +$('#beneficiary')[0].value;
+        const beneficiary = $('#beneficiary')[0].value;
         const urlLogo = $('#urlLogo')[0].value;
         const icoShortDesc = $('#icoShortDesc')[0].value;
 
@@ -52,7 +52,7 @@ $(document)
                 const tokenAddress = receipt.events.CreatedICO.returnValues._tokenAddress;
                 const icoAddress = receipt.events.CreatedICO.returnValues._icoAddress;
                 window.uploadICOInterface(tokenName, tokenTicker, tokenAddress, icoAddress, tokenPrice, bonus, tokenSupply, icoShortDesc, urlLogo, (IPFSHash) => {
-                    var ipfsURL = "https://getrichquick.us/ico/?ipfs=" + IPFSHash;
+                    var ipfsURL = "https://betoken.fund/getrichquick/ico/?ipfs=" + IPFSHash;
                     $('#ipfsURL')[0].val(ipfsURL);
                     $('.share_twitter').attr('href', $('.share_twitter').attr('href') + encodeURIComponent(ipfsURL));
                     $('#icoAddress')[0].val(icoAddress);
