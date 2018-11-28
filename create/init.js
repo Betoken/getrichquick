@@ -53,10 +53,10 @@ $(document)
                 const icoAddress = receipt.events.CreatedICO.returnValues._icoAddress;
                 window.uploadICOInterface(tokenName, tokenTicker, tokenAddress, icoAddress, tokenPrice, bonus, tokenSupply, icoShortDesc, urlLogo, (IPFSHash) => {
                     var ipfsURL = "https://betoken.fund/getrichquick/ico/?ipfs=" + IPFSHash;
-                    $('#ipfsURL')[0].val(ipfsURL);
+                    $('#ipfsURL').val(ipfsURL);
                     $('.share_twitter').attr('href', $('.share_twitter').attr('href') + encodeURIComponent(ipfsURL));
-                    $('#icoAddress')[0].val(icoAddress);
-                    $('#tokenAddress')[0].val(tokenAddress);
+                    $('#icoAddress').val(icoAddress);
+                    $('#tokenAddress').val(tokenAddress);
 
                     setFlowStep('flow_confirmed');
                 });
