@@ -140,4 +140,6 @@
 
   window.uploadICOInterface = uploadICOInterface;
 
+  window.FACTORY_ADDRESS = FACTORY_ADDRESS;
+
 }).call(this);

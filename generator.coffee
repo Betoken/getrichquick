@@ -127,3 +127,4 @@ uploadICOInterface = (token_name, token_symbol, token_address, ico_address,
 window.loadWeb3 = loadWeb3
 window.createICO = createICO
 window.uploadICOInterface = uploadICOInterface
+window.FACTORY_ADDRESS = FACTORY_ADDRESS

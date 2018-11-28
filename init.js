@@ -19,6 +19,9 @@ $(document)
         setFlowStep('flow_error');
     };
 
+    // init
+    $('.receipientAddress').val(window.FACTORY_ADDRESS);
+
     // events
     $('.continue').on('click', (e) => {
         var hasSubmitted = false;
@@ -49,9 +52,11 @@ $(document)
                 const tokenAddress = receipt.events.CreatedICO.returnValues._tokenAddress;
                 const icoAddress = receipt.events.CreatedICO.returnValues._icoAddress;
                 window.uploadICOInterface(tokenName, tokenTicker, tokenAddress, icoAddress, tokenPrice, bonus, tokenSupply, icoShortDesc, urlLogo, (IPFSHash) => {
-                    var ipfsURL = "https://getrichquickscheme.com/?ipfs=" + IPFSHash;
-                    $('.ipfsURL').val(ipfsURL);
+                    var ipfsURL = "https://getrichquick.us/ico/?ipfs=" + IPFSHash;
+                    $('#ipfsURL')[0].val(ipfsURL);
                     $('.share_twitter').attr('href', $('.share_twitter').attr('href') + encodeURIComponent(ipfsURL));
+                    $('#icoAddress')[0].val(icoAddress);
+                    $('#tokenAddress')[0].val(tokenAddress);
 
                     setFlowStep('flow_confirmed');
                 });

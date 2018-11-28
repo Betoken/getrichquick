@@ -91,8 +91,8 @@
                         </div>
                         <form>
                             <div class="form-group">
-                                <label for="receipientAddress">Please verify the receipient address is the following:</label>
-                                <input class="form-control" type="text" id="receipientAddress" value="0x.." readonly>
+                                <label for="metamaskReceipientAddress">Please verify the receipient address is the following:</label>
+                                <input class="form-control receipientAddress" type="text" id="metamaskReceipientAddress" value="0x.." readonly>
                             </div>
                         </form>
                     </div>
@@ -119,8 +119,8 @@
                         </div>
                         <form>
                             <div class="form-group">
-                                <label for="receipientAddress">Please verify the receipient address is the following:</label>
-                                <input class="form-control" type="text" id="receipientAddress" placeholder="0x.." value="0x..">
+                                <label for="ledgerReceipientAddress">Please verify the receipient address is the following:</label>
+                                <input class="form-control receipientAddress" type="text" id="ledgerReceipientAddress" value="0x.." readonly>
                             </div>
                         </form>
                     </div>
@@ -149,19 +149,23 @@
                     <div class="card-body">
                         <h5 class="card-title">✔️ Congratulations!</h5>
                         <h6 class="card-subtitle mb-2 text-muted">You just deployed your ICO!</h6>
+                        <p class="card-subtitle mb-2 text-muted"><a class="tx_link text-pink" href="#" title="Check transaction status on Etherscan" target="_blank">Verify your transaction</a></p>
                         <form>
                             <div class="form-group">
-                                <label for="ipfsURL">Share your ICO's link:</label>
+                                <label for="ipfsURL">Your ICO's website:</label>
                                 <input class="form-control" type="text" id="ipfsURL" placeholder="" value="https://..">
                             </div>
                             <div class="form-group">
-                                <label for="icoContract">Write down your ICO address:</label>
-                                <input class="form-control" type="text" id="icoContract" placeholder="" value="0x..">
+                                <label for="icoAddress">Write down your ICO address:</label>
+                                <input class="form-control" type="text" id="icoAddress" placeholder="" value="0x..">
+                            </div>
+                            <div class="form-group">
+                                <label for="tokenAddress">Write down your token address:</label>
+                                <input class="form-control" type="text" id="tokenAddress" placeholder="" value="0x..">
                             </div>
                         </form>
-                        <p class="card-text">Verify your <a class="tx_link text-pink" href="#" title="Check transaction status on Etherscan" target="_blank">transaction</a>.</p>
                         <hr>
-                        <a class="mt-4 btn btn-pinky-glow btn-lg btn-block text-white" href="#" target="_blank">Share on Twitter</a>
+                        <a class="mt-4 btn btn-pinky-glow btn-lg btn-block text-white share_twitter" href="https://twitter.com/intent/tweet?hashtags=getrichquick%2C%20betoken&related=betoken&text=I%27ve%20just%20created%20my%20own%20ICO%20for%20free%20using%20https%3A%2F%2Fgetrichquick.us!%20Join%20my%20ICO%20here%3A%20" target="_blank">Share on Twitter</a>
                     </div>
                 </div>
                 <img class="mt-5 mx-auto d-block" src="assets/images/doge-coin.png" alt="doge coin" width="88">
