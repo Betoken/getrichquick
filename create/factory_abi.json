@@ -1,0 +1,97 @@
+[
+    {
+        "anonymous": false,
+        "inputs": [
+            {
+                "indexed": true,
+                "name": "_sender",
+                "type": "address"
+            },
+            {
+                "indexed": false,
+                "name": "_name",
+                "type": "string"
+            },
+            {
+                "indexed": false,
+                "name": "_symbol",
+                "type": "string"
+            },
+            {
+                "indexed": false,
+                "name": "_hardCap",
+                "type": "uint256"
+            },
+            {
+                "indexed": false,
+                "name": "_tokensPerDAI",
+                "type": "uint256"
+            },
+            {
+                "indexed": false,
+                "name": "_referralBonus",
+                "type": "uint256"
+            },
+            {
+                "indexed": false,
+                "name": "_beneficiary",
+                "type": "address"
+            },
+            {
+                "indexed": false,
+                "name": "_tokenAddress",
+                "type": "address"
+            },
+            {
+                "indexed": false,
+                "name": "_icoAddress",
+                "type": "address"
+            }
+        ],
+        "name": "CreatedICO",
+        "type": "event"
+    },
+    {
+        "constant": false,
+        "inputs": [
+            {
+                "name": "_name",
+                "type": "string"
+            },
+            {
+                "name": "_symbol",
+                "type": "string"
+            },
+            {
+                "name": "_hardCap",
+                "type": "uint256"
+            },
+            {
+                "name": "_tokensPerDAI",
+                "type": "uint256"
+            },
+            {
+                "name": "_referralBonus",
+                "type": "uint256"
+            },
+            {
+                "name": "_beneficiary",
+                "type": "address"
+            }
+        ],
+        "name": "createICO",
+        "outputs": [
+            {
+                "name": "_token",
+                "type": "address"
+            },
+            {
+                "name": "_ico",
+                "type": "address"
+            }
+        ],
+        "payable": false,
+        "stateMutability": "nonpayable",
+        "type": "function"
+    }
+]
