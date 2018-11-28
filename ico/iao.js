@@ -175,8 +175,8 @@
     var ipfs;
     ipfs = new IPFS();
     return ipfs.once("ready", function() {
-      return ipfs.get(hash, function(err, files) {
-        return callback(JSON.parse(files[0].content.toString("utf8")));
+      return ipfs.files.cat(hash, function(err, file) {
+        return callback(JSON.parse(file.toString("utf8")));
       });
     });
   };
