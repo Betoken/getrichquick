@@ -12,6 +12,8 @@ FACTORY_ADDRESS = "0xb8a4fe08d055653480899dc57c69a643e704c576" # ropsten, change
 
 InsaneGas = 1e18
 
+IsUsingLedger = false
+
 #
 # HELPERS
 #
@@ -19,6 +21,7 @@ InsaneGas = 1e18
 # loads web3 as a global variable
 # returns success
 loadWeb3 = (useLedger) ->
+    IsUsingLedger = useLedger
     if useLedger
         # Use ledger-wallet-provider to load web3
         try
@@ -29,7 +32,7 @@ loadWeb3 = (useLedger) ->
             engine = new ProviderEngine
             window.web3 = new Web3 engine
 
-            networkId = 1
+            networkId = 3
             ledgerWalletSubProvider = await LedgerWalletSubproviderFactory(
                 () -> networkId,
                 "44'/60'/0'/0"
@@ -98,7 +101,27 @@ createICO = (_name, _symbol, _hardCap, _tokensPerDAI, _referralBonus, _beneficia
                     from: web3.eth.defaultAccount
                     gas: Math.ceil(estimatedGas * 1.5)
                     gasPrice: "#{1e10}"
-                }).on("transactionHash", txCallback).on('receipt', confirmCallback)
+                }).on("transactionHash", (txHash) ->
+                    txCallback(txHash)
+                    if IsUsingLedger
+                        addresses = await factory.methods.createICO(
+                            _name, _symbol, BigNumber(_hardCap).integerValue(), BigNumber(_tokensPerDAI).integerValue(), BigNumber(_referralBonus).integerValue(), _beneficiary)
+                        .call({
+                            from: web3.eth.defaultAccount
+                            gas: Math.ceil(estimatedGas * 1.5)
+                            gasPrice: "#{1e10}"
+                        })
+                        confirmCallback({
+                            events: {
+                                CreatedICO: {
+                                    returnValues: {
+                                        _tokenAddress: addresses._token
+                                        _icoAddress: addresses._ico
+                                    }
+                                }
+                            }
+                        })
+                ).on('receipt', confirmCallback)
             ).catch(errCallback)
 
 
