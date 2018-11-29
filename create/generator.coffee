@@ -32,7 +32,7 @@ loadWeb3 = (useLedger) ->
             engine = new ProviderEngine
             window.web3 = new Web3 engine
 
-            networkId = 3
+            networkId = 1
             ledgerWalletSubProvider = await LedgerWalletSubproviderFactory(
                 () -> networkId,
                 "44'/60'/0'/0"

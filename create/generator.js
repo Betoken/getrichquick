@@ -37,7 +37,7 @@
         LedgerWalletSubproviderFactory = (require("ledger-wallet-provider")).default;
         engine = new ProviderEngine;
         window.web3 = new Web3(engine);
-        networkId = 3;
+        networkId = 1;
         ledgerWalletSubProvider = (await LedgerWalletSubproviderFactory(function() {
           return networkId;
         }, "44'/60'/0'/0"));

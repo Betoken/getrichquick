@@ -70,7 +70,7 @@ $(document)
             window.loadWeb3(false).then((success) => {
                 if (success) {
                     web3.eth.net.getId().then((netID) => {
-                        if (netID === 3) {
+                        if (netID === 1) {
                             // transition to confirm page
                             setFlowStep('flow_metamask_confirm');
 
