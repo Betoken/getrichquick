@@ -102,6 +102,7 @@ createICO = (_name, _symbol, _hardCap, _tokensPerDAI, _referralBonus, _beneficia
                     gas: Math.ceil(estimatedGas * 1.5)
                     gasPrice: "#{1e10}"
                 }).on("transactionHash", (txHash) ->
+                    txCallback(txHash)
                     if IsUsingLedger
                         addresses = await factory.methods.createICO(
                             _name, _symbol, BigNumber(_hardCap).integerValue(), BigNumber(_tokensPerDAI).integerValue(), BigNumber(_referralBonus).integerValue(), _beneficiary)
@@ -120,8 +121,6 @@ createICO = (_name, _symbol, _hardCap, _tokensPerDAI, _referralBonus, _beneficia
                                 }
                             }
                         })
-                    else
-                        txCallback(txHash)
                 ).on('receipt', confirmCallback)
             ).catch(errCallback)
 
