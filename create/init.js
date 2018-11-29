@@ -52,7 +52,7 @@ $(document)
                 const tokenAddress = receipt.events.CreatedICO.returnValues._tokenAddress;
                 const icoAddress = receipt.events.CreatedICO.returnValues._icoAddress;
                 window.uploadICOInterface(tokenName, tokenTicker, tokenAddress, icoAddress, tokenPrice, bonus, tokenSupply, icoShortDesc, urlLogo, (IPFSHash) => {
-                    var ipfsURL = "https://zeframlou.github.io/getrichquick/ico/?ipfs=" + IPFSHash;
+                    var ipfsURL = "https://betoken.fund/getrichquick/ico/?ipfs=" + IPFSHash;
                     $('#ipfsURL').val(ipfsURL);
                     $('.share_twitter').attr('href', $('.share_twitter').attr('href') + encodeURIComponent(ipfsURL));
                     $('#icoAddress').val(icoAddress);

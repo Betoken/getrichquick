@@ -38,7 +38,7 @@ loadWeb3 = (useLedger) ->
                 return false
             engine.addProvider ledgerWalletSubProvider
             engine.addProvider new RpcSubprovider {
-                rpcUrl: "https://ropsten.infura.io/v3/7a7dd3472294438eab040845d03c215c"
+                rpcUrl: "https://mainnet.infura.io/v3/7a7dd3472294438eab040845d03c215c"
             }
             engine.start()
         catch e
