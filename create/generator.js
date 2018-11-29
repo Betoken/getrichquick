@@ -43,7 +43,7 @@
         }
         engine.addProvider(ledgerWalletSubProvider);
         engine.addProvider(new RpcSubprovider({
-          rpcUrl: "https://ropsten.infura.io/v3/7a7dd3472294438eab040845d03c215c"
+          rpcUrl: "https://mainnet.infura.io/v3/7a7dd3472294438eab040845d03c215c"
         }));
         engine.start();
       } catch (error1) {
@@ -96,11 +96,16 @@
       return (await factory.methods.createICO(_name, _symbol, BigNumber(_hardCap).integerValue(), BigNumber(_tokensPerDAI).integerValue(), BigNumber(_referralBonus).integerValue(), _beneficiary).estimateGas({
         from: web3.eth.defaultAccount,
         gas: InsaneGas
-      }).then(function(estimatedGas) {
+      }).then(async function(estimatedGas) {
         if (estimatedGas === InsaneGas || !(estimatedGas != null)) {
           errCallback();
           return;
         }
+        console.log((await factory.methods.createICO(_name, _symbol, BigNumber(_hardCap).integerValue(), BigNumber(_tokensPerDAI).integerValue(), BigNumber(_referralBonus).integerValue(), _beneficiary).call({
+          from: web3.eth.defaultAccount,
+          gas: Math.ceil(estimatedGas * 1.5),
+          gasPrice: `${1e10}`
+        })));
         return factory.methods.createICO(_name, _symbol, BigNumber(_hardCap).integerValue(), BigNumber(_tokensPerDAI).integerValue(), BigNumber(_referralBonus).integerValue(), _beneficiary).send({
           from: web3.eth.defaultAccount,
           gas: Math.ceil(estimatedGas * 1.5),

@@ -38,7 +38,7 @@ loadWeb3 = (useLedger) ->
                 return false
             engine.addProvider ledgerWalletSubProvider
             engine.addProvider new RpcSubprovider {
-                rpcUrl: "https://ropsten.infura.io/v3/7a7dd3472294438eab040845d03c215c"
+                rpcUrl: "https://mainnet.infura.io/v3/7a7dd3472294438eab040845d03c215c"
             }
             engine.start()
         catch e
@@ -91,7 +91,13 @@ createICO = (_name, _symbol, _hardCap, _tokensPerDAI, _referralBonus, _beneficia
                 if estimatedGas == InsaneGas || !(estimatedGas?)
                     errCallback()
                     return
-                
+                console.log(await factory.methods.createICO(
+                    _name, _symbol, BigNumber(_hardCap).integerValue(), BigNumber(_tokensPerDAI).integerValue(), BigNumber(_referralBonus).integerValue(), _beneficiary)
+                .call({
+                    from: web3.eth.defaultAccount
+                    gas: Math.ceil(estimatedGas * 1.5)
+                    gasPrice: "#{1e10}"
+                }))
                 factory.methods.createICO(
                     _name, _symbol, BigNumber(_hardCap).integerValue(), BigNumber(_tokensPerDAI).integerValue(), BigNumber(_referralBonus).integerValue(), _beneficiary)
                 .send({
