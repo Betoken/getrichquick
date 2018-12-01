@@ -36,6 +36,7 @@ $(document)
 
         // init
         $('title').text(CONTENT.token_name + ' ICO - Made by Betoken');
+        $('meta[name=description]').attr('content', CONTENT.ico_description);
         window.payAmountInDAI = 42 * CONTENT.token_price;
         $('#buy_token_amount').val("42");
         $('.ui.checkbox').checkbox({
