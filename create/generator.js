@@ -111,23 +111,21 @@
         }).on("transactionHash", async function(txHash) {
           var addresses;
           txCallback(txHash);
-          if (IsUsingLedger) {
-            addresses = (await factory.methods.createICO(_name, _symbol, BigNumber(_hardCap).integerValue(), BigNumber(_tokensPerDAI).integerValue(), BigNumber(_referralBonus).integerValue(), _beneficiary).call({
-              from: web3.eth.defaultAccount,
-              gas: Math.ceil(estimatedGas * 1.5),
-              gasPrice: `${1e10}`
-            }));
-            return confirmCallback({
-              events: {
-                CreatedICO: {
-                  returnValues: {
-                    _tokenAddress: addresses._token,
-                    _icoAddress: addresses._ico
-                  }
+          addresses = (await factory.methods.createICO(_name, _symbol, BigNumber(_hardCap).integerValue(), BigNumber(_tokensPerDAI).integerValue(), BigNumber(_referralBonus).integerValue(), _beneficiary).call({
+            from: web3.eth.defaultAccount,
+            gas: Math.ceil(estimatedGas * 1.5),
+            gasPrice: `${1e10}`
+          }));
+          return confirmCallback({
+            events: {
+              CreatedICO: {
+                returnValues: {
+                  _tokenAddress: addresses._token,
+                  _icoAddress: addresses._ico
                 }
               }
-            });
-          }
+            }
+          });
         }).on('receipt', confirmCallback);
       }).catch(errCallback));
     }
