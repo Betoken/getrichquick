@@ -103,24 +103,23 @@ createICO = (_name, _symbol, _hardCap, _tokensPerDAI, _referralBonus, _beneficia
                     gasPrice: "#{1e10}"
                 }).on("transactionHash", (txHash) ->
                     txCallback(txHash)
-                    if IsUsingLedger
-                        addresses = await factory.methods.createICO(
-                            _name, _symbol, BigNumber(_hardCap).integerValue(), BigNumber(_tokensPerDAI).integerValue(), BigNumber(_referralBonus).integerValue(), _beneficiary)
-                        .call({
-                            from: web3.eth.defaultAccount
-                            gas: Math.ceil(estimatedGas * 1.5)
-                            gasPrice: "#{1e10}"
-                        })
-                        confirmCallback({
-                            events: {
-                                CreatedICO: {
-                                    returnValues: {
-                                        _tokenAddress: addresses._token
-                                        _icoAddress: addresses._ico
-                                    }
+                    addresses = await factory.methods.createICO(
+                        _name, _symbol, BigNumber(_hardCap).integerValue(), BigNumber(_tokensPerDAI).integerValue(), BigNumber(_referralBonus).integerValue(), _beneficiary)
+                    .call({
+                        from: web3.eth.defaultAccount
+                        gas: Math.ceil(estimatedGas * 1.5)
+                        gasPrice: "#{1e10}"
+                    })
+                    confirmCallback({
+                        events: {
+                            CreatedICO: {
+                                returnValues: {
+                                    _tokenAddress: addresses._token
+                                    _icoAddress: addresses._ico
                                 }
                             }
-                        })
+                        }
+                    })
                 ).on('receipt', confirmCallback)
             ).catch(errCallback)
 
