@@ -8,7 +8,7 @@ fs = require "fs"
 factoryABI = require "./factory_abi.json"
 
 # smart contract addresses
-FACTORY_ADDRESS = "0xb8a4fe08d055653480899dc57c69a643e704c576" # ropsten, change for mainnet
+FACTORY_ADDRESS = "0x2f461a6b6a85e82a06cbbe5426d7c1b64c5bd0c8"
 
 InsaneGas = 1e18
 
