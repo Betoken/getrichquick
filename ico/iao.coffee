@@ -107,7 +107,7 @@ ERC20Contract = (address) ->
 #   … (other token pairs)
 # }
 getTokenPairs = () ->
-    request = await fetch "https://tracker.kyber.network/api/tokens/pairs"
+    request = await fetch("https://api.kyber.network/api/tokens/pairs", {headers: {'Origin': 'https://betoken.fund/getrichquick/ico'}})
     tokensInformation = await request.json()
     return tokensInformation
 
@@ -124,7 +124,7 @@ getTokenPairs = () ->
 #     … (other tokens' information)
 # ]
 getTokenList = () ->
-    request = await fetch "https://tracker.kyber.network/api/tokens/supported"
+    request = await fetch("https://api.kyber.network/currencies", {headers: {'Origin': 'https://betoken.fund/getrichquick/ico'}})
     tokensInformation = await request.json()
     return tokensInformation
 

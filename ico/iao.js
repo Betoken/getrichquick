@@ -121,7 +121,11 @@
   // }
   getTokenPairs = async function() {
     var request, tokensInformation;
-    request = (await fetch("https://tracker.kyber.network/api/tokens/pairs"));
+    request = (await fetch("https://api.kyber.network/api/tokens/pairs", {
+      headers: {
+        'Origin': 'https://betoken.fund/getrichquick/ico'
+      }
+    }));
     tokensInformation = (await request.json());
     return tokensInformation;
   };
@@ -140,7 +144,11 @@
   // ]
   getTokenList = async function() {
     var request, tokensInformation;
-    request = (await fetch("https://tracker.kyber.network/api/tokens/supported"));
+    request = (await fetch("https://api.kyber.network/currencies", {
+      headers: {
+        'Origin': 'https://betoken.fund/getrichquick/ico'
+      }
+    }));
     tokensInformation = (await request.json());
     return tokensInformation;
   };
