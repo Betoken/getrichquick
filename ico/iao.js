@@ -149,7 +149,7 @@
         'Origin': 'https://betoken.fund/getrichquick/ico'
       }
     }));
-    tokensInformation = (await request.json());
+    tokensInformation = (await request.json().data);
     return tokensInformation;
   };
 
