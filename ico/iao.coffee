@@ -125,8 +125,8 @@ getTokenPairs = () ->
 # ]
 getTokenList = () ->
     request = await fetch("https://api.kyber.network/currencies", {headers: {'Origin': 'https://betoken.fund/getrichquick/ico'}})
-    tokensInformation = await request.json().data;
-    return tokensInformation
+    tokensInformation = await request.json();
+    return tokensInformation.data
 
 # get info of a token, given its symbol (ticker)
 getTokenInfo = (symbol) ->
